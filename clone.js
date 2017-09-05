@@ -28,7 +28,7 @@ function isObject(obj) {
 }
 
 function clone(obj) {
-    var o;
+    var o = obj;
     if(isArray(obj)){
         o = [];
         for(var i=0;i<obj.length;i++){
@@ -39,8 +39,6 @@ function clone(obj) {
         for(var k in obj){
             o[k] = clone(obj[k]);
         }
-    } else {
-        o = obj;
     }
     return o;
 }
