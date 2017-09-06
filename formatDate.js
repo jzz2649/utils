@@ -1,5 +1,5 @@
 function formatDate(timestamp, type){
-    var year, month, hours, minute, second, d, t;
+    var year, month, day, hours, minute, second, d, t;
     var type = type || 'YY-MM-DD hh:mm:ss';
     var date = new Date(timestamp||null);
     var len2 = function(v){
