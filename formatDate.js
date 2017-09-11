@@ -4,7 +4,7 @@ function formatDate(timestamp, type){
     var date = new Date(timestamp||null);
     var fill = function (s, v, l){
         var len = v.length;
-        var _l = l-len,
+        var _l = l - len,
             _l = _l > 0 ? _l : 0;
         return s.repeat(_l) + v.slice(0, l);
     }
@@ -13,14 +13,8 @@ function formatDate(timestamp, type){
         return fill('0', v, 2);
     }
     var _formatDate = function(d, t){
-        var date = '';
-        var time = '';
-        if (d) {
-            date = year + d + month + d + day;
-        }
-        if (t) {
-            time = hours + t + minute + t + second;
-        }
+        var date = d ? (year + d + month + d + day) : '';
+        var time = t ? (hours + t + minute + t + second) : '';
         return (date+' '+time).trim();
     }
     year = date.getFullYear();
