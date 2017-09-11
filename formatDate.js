@@ -2,18 +2,15 @@ function formatDate(timestamp, type){
     var year, month, day, hours, minute, second, d, t;
     var type = type || 'YY-MM-DD hh:mm:ss';
     var date = new Date(timestamp||null);
+    var fill = function (s, v, l){
+        var len = v.length;
+        var _l = l-len,
+            _l = _l > 0 ? _l : 0;
+        return s.repeat(_l) + v.slice(0, l);
+    }
     var len2 = function(v){
         var v = v ? v.toString() : '';
-        var result = '00';
-        var len = v.length;
-        if (len === 1) {
-            result = '0'+v;
-        } else if (len === 2) {
-            result = v;
-        } else if (len > 2) {
-            result = v.slice(0, 2);
-        }
-        return result;
+        return fill('0', v, 2);
     }
     var _formatDate = function(d, t){
         var date = '';
