@@ -12,15 +12,15 @@ function isObject(obj) {
 
 function clone(obj) {
     var o = obj;
-    if(isArray(obj)){
-        o = [];
-        for(var i=0;i<obj.length;i++){
-            o.push(clone(obj[i]));
-        }
-    } else if(isObject(obj)){
+    if(isObject(obj)){
         o = {};
         for(var k in obj){
             o[k] = clone(obj[k]);
+        }
+    } else if(isArray(obj)){
+        o = [];
+        for(var i=0;i<obj.length;i++){
+            o.push(clone(obj[i]));
         }
     }
     return o;
