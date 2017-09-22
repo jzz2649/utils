@@ -28,7 +28,7 @@ function strjoin(arr){
 /**
  *@func isempty 是否为空
  *@param {array} [arr] 字符串数组
- *@return {string}
+ *@return {boolean}
  */
 
 function isempty(str){
