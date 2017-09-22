@@ -23,17 +23,8 @@ function formatDate(timestamp, type){
     hours = len2(date.getHours());
     minute = len2(date.getMinutes());
     second = len2(date.getSeconds());
-    if (type.length === 17) {
-        d = type.slice(2, 3);
-        t = type.slice(11, 12);
-    } else if (type.length === 8) {
-        if (~type.indexOf('YY')) {
-            d = type.slice(2, 3);
-        } else {
-            t = type.slice(2, 3);
-        }
-    } else {
-        throw new Error('args type error,for example YY-MM-DD hh:mm:ss');
-    }
+    d = /^YY(.)MM.DD/.test(type) ? RegExp.$1 : undefined;
+	t = /hh(.)mm.ss$/.test(type) ? RegExp.$1 : undefined;
+	if(!d && !t) throw new Error('args type error,for example YY-MM-DD hh:mm:ss');
     return _formatDate(d, t);
 }
