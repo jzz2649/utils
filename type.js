@@ -30,3 +30,34 @@ function isFun(fun) {
 function isObject(obj) {
     return type(obj) === '[object Object]';
 }
+
+function strIsEmpty(str){
+	return str.trim() === '';
+}
+
+function numIsEmpty(num){
+	return isNaN(num);
+}
+
+function objIsEmpty(obj){
+	for(var i in obj){
+		return false;
+	}
+	return true;
+}
+
+function arrIsEmpty(arr){
+	for(var i = 0; i < arr.lenth; i++){
+		return false;
+	}
+	return true;
+}
+
+function isEmpty(o){
+	if(o === undefined && o === null) return true;
+	if(isString(o) && strIsEmpty(o)) return true;
+	if(isNumber(o) && numIsEmpty(o)) return true;
+	if(isObject(o) && objIsEmpty(o)) return true;
+	if(isArray(o) && arrIsEmpty(o)) return true;
+	return false;
+}
