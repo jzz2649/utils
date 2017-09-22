@@ -3,8 +3,7 @@ function formatDate(timestamp, type){
     var type = type || 'YY-MM-DD hh:mm:ss';
     var date = new Date(timestamp||null);
     var fill = function (s, v, l){
-        var len = v.length;
-        var _l = l - len,
+        var _l = l - v.length,
             _l = _l > 0 ? _l : 0;
         return s.repeat(_l) + v.slice(0, l);
     }
