@@ -24,7 +24,7 @@ function formatDate(timestamp, type){
     minute = len2(date.getMinutes());
     second = len2(date.getSeconds());
     d = /^YY(.)MM.DD/.test(type) ? RegExp.$1 : undefined;
-	t = /hh(.)mm.ss$/.test(type) ? RegExp.$1 : undefined;
-	if(!d && !t) throw new Error('args type error,for example YY-MM-DD hh:mm:ss');
+    t = /hh(.)mm.ss$/.test(type) ? RegExp.$1 : undefined;
+    if(!d && !t) throw new Error('args type error,for example YY-MM-DD hh:mm:ss');
     return _formatDate(d, t);
 }
