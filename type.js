@@ -19,6 +19,10 @@ function isNaN(nan) {
     return false;
 }
 
+function isString(str) {
+    return type(str) === '[object String]';
+}
+
 function isFun(fun) {
     return type(fun) === '[object Function]';
 }
