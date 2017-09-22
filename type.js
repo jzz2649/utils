@@ -54,7 +54,7 @@ function arrIsEmpty(arr){
 }
 
 function isEmpty(o){
-	if(o === undefined && o === null) return true;
+	if(o === undefined || o === null) return true;
 	if(isString(o) && strIsEmpty(o)) return true;
 	if(isNumber(o) && numIsEmpty(o)) return true;
 	if(isObject(o) && objIsEmpty(o)) return true;
