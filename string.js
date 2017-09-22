@@ -8,11 +8,11 @@
  */
 
 function fill(s, v, l, d){
-	var _l = l - v.length,
-		_l = _l > 0 ? _l : 0;
-		v = d === 'left' ? s.repeat(_l) + v.slice(0, l)
-						 : v.slice(0, l) + s.repeat(_l);
-	return v;
+    var _l = l - v.length,
+        _l = _l > 0 ? _l : 0;
+        v = d === 'left' ? s.repeat(_l) + v.slice(0, l)
+                         : v.slice(0, l) + s.repeat(_l);
+    return v;
 }
 
 /**
@@ -22,7 +22,7 @@ function fill(s, v, l, d){
  */
 
 function strjoin(arr){
-	return arr.join('');
+    return arr.join('');
 }
 
 /**
@@ -32,5 +32,5 @@ function strjoin(arr){
  */
 
 function isempty(str){
-	return str.trim() === '';
+    return str.trim() === '';
 }
