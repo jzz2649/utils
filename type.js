@@ -35,10 +35,6 @@ function strIsEmpty(str){
 	return str.trim() === '';
 }
 
-function numIsEmpty(num){
-	return isNaN(num);
-}
-
 function objIsEmpty(obj){
 	for(var i in obj){
 		return false;
@@ -56,8 +52,8 @@ function arrIsEmpty(arr){
 function isEmpty(o){
 	if(o === undefined || o === null) return true;
 	if(isString(o) && strIsEmpty(o)) return true;
-	if(isNumber(o) && numIsEmpty(o)) return true;
 	if(isObject(o) && objIsEmpty(o)) return true;
 	if(isArray(o) && arrIsEmpty(o)) return true;
+	if(isNaN(o)) return true;
 	return false;
 }
