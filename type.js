@@ -43,7 +43,7 @@ function objIsEmpty(obj){
 }
 
 function arrIsEmpty(arr){
-    for(var i = 0; i < arr.lenth; i++){
+    for(var i = 0; i < arr.length; i++){
         return false;
     }
     return true;
