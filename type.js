@@ -50,10 +50,12 @@ function arrIsEmpty(arr){
 }
 
 function isEmpty(o){
-    if(o === undefined || o === null) return true;
-    if(isString(o) && strIsEmpty(o)) return true;
-    if(isObject(o) && objIsEmpty(o)) return true;
-    if(isArray(o) && arrIsEmpty(o)) return true;
-    if(isNaN(o)) return true;
-    return false;
+    switch(true){
+        case o === undefined || o === null:
+        case isString(o) && strIsEmpty(o):
+        case isObject(o) && objIsEmpty(o):
+        case isArray(o) && arrIsEmpty(o):
+        case isNaN(o): return true;
+        default: return false;
+    }
 }
