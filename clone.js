@@ -17,20 +17,21 @@ function clone(obj) {
 }
 
 function assign(a, b){
-  var o = clone(a);
-  if(isObject(o)&&isObject(b)){
-    for(var i in b){
-      if(!o[i] || !o.hasOwnProperty(i)){
-        o[i] = b[i];
-      }else {
-        o[i] = assign(o[i], b[i])
-      }
+    var o = clone(a);
+    if(isObject(o) && isObject(b)){
+        for(var i in b){
+            if(!o[i] || !o.hasOwnProperty(i)){
+                o[i] = clone(b[i]);
+            }else {
+                o[i] = assign(o[i], b[i]);
+            }
+        }
+    }else if(isArray(o) && isArray(b)){
+        for(var i=0; i<b.length; i++){
+            o[i] = assign(o[i], b[i]);
+        }
+    }else {
+        return b;
     }
-  }else if(isArray(b)&&isArray(b)){
-    for(var i=0; i<b.lenght; i++){
-      o[i] = assign(o[i], b[i])
-    }
-  }else {
-    return b
-  }
+    return o;
 }
