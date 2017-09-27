@@ -24,13 +24,3 @@ function fill(s, v, l, d){
 function strjoin(arr){
     return arr.join('');
 }
-
-/**
- *@func isempty 是否为空
- *@param {array} [arr] 字符串数组
- *@return {boolean}
- */
-
-function isempty(str){
-    return str.trim() === '';
-}
