@@ -1,4 +1,4 @@
-import { isArray, jsObject } from './type.js';
+import { isArray, isObject } from './type.js';
 
 function clone(obj) {
     var o = obj;
