@@ -27,3 +27,20 @@ filterValue(o){
     }
     return d;
 }
+
+/**
+ *@func getValue 获取对象的值
+ *@param {object} [obj] 对象
+ *@return {function} [...args] 属性
+ */
+
+function getValue(obj) {
+    return function(){
+        var arr = Array.prototype.slice.call(arguments);
+        return arr.length > 1 ? arr.reduce(function(result, props, index){
+            index === 1 && (result = obj[result]);
+            result = result ? result[props] : undefined;
+            return result;
+        }) : obj[arr[0]];
+    }
+}
