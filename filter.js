@@ -8,7 +8,7 @@ import { isEmpty } from './empty.js';
  *@return {object|array}
  */
 
-filterValue(o){
+function filterValue(o){
     var d;
     if(isObject(o)){
         d = {};
