@@ -9,21 +9,21 @@ import { isEmpty } from './empty.js';
  */
 
 filterValue(o){
-	var d;
-	if(isObject(o)){
-		d = {};
-		for(var i in o){
-			if(!isEmpty(o[i])){
-				d[i] = o[i];
-			}
-		}
-	}else if(isArray(o)){
-		d = [];
-		for(var i = 0; i < o.length; i++){
-			if(!isEmpty(o[i])){
-				d.push(o[i]);
-			}
-		}
-	}
-	return d;
+    var d;
+    if(isObject(o)){
+        d = {};
+        for(var i in o){
+            if(!isEmpty(o[i])){
+                d[i] = o[i];
+            }
+        }
+    }else if(isArray(o)){
+        d = [];
+        for(var i = 0; i < o.length; i++){
+            if(!isEmpty(o[i])){
+                d.push(o[i]);
+            }
+        }
+    }
+    return d;
 }
