@@ -9,19 +9,19 @@ import { isEmpty } from './empty.js';
  */
 
 function filterValue(o){
-    var d;
+    var d = o;
     if(isObject(o)){
         d = {};
         for(var i in o){
             if(!isEmpty(o[i])){
-                d[i] = o[i];
+                d[i] = filterValue(o[i]);
             }
         }
     }else if(isArray(o)){
         d = [];
         for(var i = 0; i < o.length; i++){
             if(!isEmpty(o[i])){
-                d.push(o[i]);
+                d.push(filterValue(o[i]));
             }
         }
     }
