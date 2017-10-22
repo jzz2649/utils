@@ -1,4 +1,4 @@
-import { isString, isObject, isArray, isNaN, isBoolean } from './type.js';
+import { isString, isObject, isArray, isNaN } from './type.js';
 
 function strIsEmpty(str){
     return str.trim() === '';
@@ -24,7 +24,6 @@ function isEmpty(o){
         case isString(o) && strIsEmpty(o):
         case isObject(o) && objIsEmpty(o):
         case isArray(o) && arrIsEmpty(o):
-        case isBoolean(o) && !o:
         case isNaN(o): return true;
         default: return false;
     }
