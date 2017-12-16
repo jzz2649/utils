@@ -35,12 +35,10 @@ function filterValue(o){
  */
 
 function getValue(obj) {
-    return function(){
-        var arr = Array.prototype.slice.call(arguments);
-        return arr.length > 1 ? arr.reduce(function(result, props, index){
-            index === 1 && (result = obj[result]);
-            result = result ? result[props] : undefined;
-            return result;
-        }) : obj[arr[0]];
-    }
+  return function(){
+    var arr = Array.prototype.slice.call(arguments);
+    return arr.reduce(function(result, props){
+      return result ? result[props] : undefined;
+    }, obj);
+  }
 }
