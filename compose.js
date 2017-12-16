@@ -3,7 +3,7 @@
  *from https://github.com/reactjs/redux/
  */
 
-function compose(args) {
+function compose() {
     var funcs = Array.prototype.slice.call(arguments)
 
     if (funcs.length === 0) {

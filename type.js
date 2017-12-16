@@ -31,4 +31,8 @@ function isObject(obj) {
     return type(obj) === '[object Object]';
 }
 
-export { isArray, isNumber, isNaN, isString, isFun, isObject };
+function isBoolean(boolean) {
+    return type(boolean) === '[object Boolean]';
+}
+
+export { isArray, isNumber, isNaN, isString, isFun, isObject, isBoolean };
