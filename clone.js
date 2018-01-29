@@ -2,17 +2,13 @@ import { isArray, isObject } from './type.js';
 
 function clone(obj) {
     var o = obj;
-    if(isObject(obj)){
-        o = {};
-        for(var k in obj){
+	var set = function(){
+		for(var k in obj){
             o[k] = clone(obj[k]);
         }
-    } else if(isArray(obj)){
-        o = [];
-        for(var i=0;i<obj.length;i++){
-            o.push(clone(obj[i]));
-        }
-    }
+	};
+    if(isObject(obj)) set(o={});
+	else if(isArray(obj)) set(o=[]);
     return o;
 }
 
