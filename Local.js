@@ -18,7 +18,7 @@ function Local(store){
 
   var storage = {
     set: function(k, v){
-      if(has(k)&&is(local[k],v)){
+      if(has(local, k)&&is(local[k],v)){
         return;
       }
       local[k] = v;
