@@ -9,10 +9,8 @@ function creEle(type, props, children){
     return document.createTextNode(String(child));
   }
 
-  if(props!=null){
-    for(var key in props){
-      node[key] = props[key];
-    }
+  for(var key in props){
+    node[key] = props[key];
   }
 
   for(var i=0; i<childs.length; i++){
