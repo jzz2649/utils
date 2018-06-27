@@ -2,21 +2,20 @@
  * @param {string} key
  * @param {number} count
  * @param {function} callback
- * @return undefined
+ * @return {void}
  */
 
 function gloop(key, count, callback){
   if(!window[key]) window[key] = 0;
   if(window[key] < count) {
-    callback(window[key]);
-    window[key] += 1;
-    loop(key, count, callback);
+    callback(window[key]++);
+    gloop(key, count, callback);
   }
 }
 
 /**
  * @param {function} callback
- * @return undefined
+ * @return {void}
  */
 
 function mloop(callback){
