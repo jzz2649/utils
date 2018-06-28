@@ -15,6 +15,18 @@ function merge(attr, prop){
 }
 
 /**
+ * @param {any} el
+ * @return {HTMLElement}
+ */
+
+function toEle(el) {
+  if (el instanceof HTMLElement) {
+    return el;
+  }
+  return document.createTextNode(String(el));
+}
+
+/**
  * @param {string} type
  * @param {object} props
  * @param {...string|HTMLElement} childrens
@@ -25,17 +37,34 @@ function creEle(type, props, childrens){
   var node = document.createElement(type);
   var childs = [].slice.call(arguments,2);
 
-  function cd(child) {
-    if (child instanceof HTMLElement) {
-      return child;
-    }
-    return document.createTextNode(String(child));
-  }
+  if(isArray(childs[0])) childs = childs[0];
 
   merge(node, props);
 
   for (var i = 0; i < childs.length; i++) {
-    node.appendChild(cd(childs[i]))
+    node.appendChild(toEle(childs[i]));
+  }
+
+  return node;
+}
+
+/**
+ * @param {string} el
+ * @param {object} props
+ * @param {...string|HTMLElement} childrens
+ * @return {HTMLElement}
+ */
+
+function cloneEle(el, props, childrens) {
+  var node = el.cloneEle(type);
+  var childs = [].slice.call(arguments, 2);
+
+  if (isArray(childs[0])) childs = childs[0];
+
+  merge(node, props);
+
+  for (var i = 0; i < childs.length; i++) {
+    node.appendChild(toEle(childs[i]));
   }
 
   return node;
