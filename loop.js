@@ -34,8 +34,8 @@ function mloop(callback){
  */
 
 function dloop(callback, delay, timer){
-	if(timer)clearTimeout(timer);
-	timer = setTimeout(function(){
-		callback()||dloop(callback, delay, timer);
-	}, delay);
+  if(timer)clearTimeout(timer);
+  timer = setTimeout(function(){
+    callback()||dloop(callback, delay, timer);
+  }, delay);
 }
