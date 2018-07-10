@@ -26,3 +26,16 @@ function mloop(callback){
     })
   }
 }
+
+/**
+ * @param {function} callback
+ * @param {number} delay
+ * @param {undefined} timer
+ */
+
+function dloop(callback, delay, timer){
+	if(timer)clearTimeout(timer);
+	timer = setTimeout(function(){
+		callback()||dloop(callback, delay, timer);
+	}, delay);
+}
