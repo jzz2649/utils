@@ -17,7 +17,7 @@ function reduce(callback,initValue){
 function map(callback){
 	var arr = [];
     for(var i=0;i<this.length;i++){
-		arr.push(callback(this[i],i,this))
+		arr.push(callback(this[i],i,this));
     }
 	return arr;
 }
@@ -26,7 +26,7 @@ function filter(callback){
 	var arr = [];
     for(var i=0;i<this.length;i++){
 		if(callback(this[i],i,this)){
-			arr.push(this[i])
+			arr.push(this[i]);
 		}
     }
 	return arr;
