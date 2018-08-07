@@ -31,3 +31,16 @@ function filter(callback){
     }
     return arr;
 }
+
+function flat(n){
+  var list = [];
+  if(n==null) n = 1;
+  for(var i = 0; i < this.length; i++){
+    if(n&&toString.call(this[i]) === '[object Array]'){
+      list = list.concat(flat.call(this[i],n-1));
+    }else{
+      list.push(this[i]);
+    }
+  }
+  return list;
+}
