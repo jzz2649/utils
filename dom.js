@@ -56,7 +56,7 @@ function creEle(type, props, childrens){
  */
 
 function cloneEle(el, props, childrens) {
-  var node = el.cloneEle(type);
+  var node = el.cloneNode(true);
   var childs = [].slice.call(arguments, 2);
 
   if (isArray(childs[0])) childs = childs[0];
