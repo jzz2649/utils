@@ -44,3 +44,9 @@ function flat(n){
   }
   return list;
 }
+
+function flatMap(callback){
+    return flat.call(map.call(this, function(v, i, arr){
+        return callback(v, i, arr);
+    }))
+}
