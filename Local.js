@@ -1,5 +1,6 @@
 function Local(store){
   var local = Object.create(null);
+  var length = 0;
   var event = [];
   var change = function(){
     for(var i=0, l = event.length; i<l; i++){
@@ -21,7 +22,6 @@ function Local(store){
     return set;
   }
   var storage = {
-    length: 0,
     set: function(k, v) {
       if(typeof v !== 'string'){
         v = String(v);
@@ -30,7 +30,7 @@ function Local(store){
         return;
       }
       if(local[k] === undefined){
-        ++storage.length;
+        ++length;
       }
       local[k] = v;
       localStorage.setItem(k, v);
@@ -49,16 +49,16 @@ function Local(store){
       if(local[k] === undefined){
         return;
       }
-      --storage.length;
+      --length;
       delete local[k];
       localStorage.removeItem(k);
       change();
     },
     clear: function() {
-      if(storage.length === 0){
+      if(length === 0){
         return;
       }
-      storage.length = 0;
+      length = 0;
       local = Object.create(null);
       localStorage.clear();
       change();
@@ -77,6 +77,12 @@ function Local(store){
       }
     }
   }
+  Object.defineProperty(storage, 'length', {
+    get: function(){
+      return length;
+    }
+  })
+  
   keys(localStorage, function(k){
     storage.set(k, localStorage.getItem(k));
   })
