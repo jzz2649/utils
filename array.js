@@ -50,3 +50,26 @@ function flatMap(callback){
         return callback(v, i, arr);
     }))
 }
+
+function each(list, callback, type) {
+    var start = 1;
+    var end = list.length - 1;
+    while (end >= start) {
+        var index = start;
+        if (type) {
+            index = end;
+            end -= 1;
+        } else {
+            start += 1;
+        }
+        if (callback(list[index], index, list)) {
+            return;
+        }
+    }
+}
+
+function forEach(callback) {
+    each(this, function(item, index, list){
+        callback(item, index, list);
+    })
+}
