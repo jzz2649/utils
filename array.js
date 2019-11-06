@@ -52,7 +52,7 @@ function flatMap(callback){
 }
 
 function each(list, callback, type) {
-    var start = 1;
+    var start = 0;
     var end = list.length - 1;
     while (end >= start) {
         var index = start;
