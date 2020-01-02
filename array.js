@@ -1,66 +1,76 @@
-function reduce(callback,initValue){
+function reduce(arr, callback, initValue){
     var index = 0;
     if(typeof initValue === 'undefined'){
-        initValue = this[0];
+        initValue = arr[0];
         index = 1;
     }
     if(typeof initValue === 'undefined'){
         throw new Error('Reduce of empty array with no initial value');
     }
     var total = initValue;
-    for(var i=index; i<this.length;i++){
-        total = callback(total,this[i],i,this);
+    for(var i=index; i < arr.length;i++){
+        total = callback(total, arr[i], i, arr);
     }
     return total;
 }
 
-function map(callback){
+function map(arr, callback){
     var arr = [];
-    for(var i=0;i<this.length;i++){
-        arr.push(callback(this[i],i,this));
+    for(var i=0; i < arr.length; i++){
+        arr.push(callback(arr[i], i, arr));
     }
     return arr;
 }
 
-function filter(callback){
+function filter(arr, callback){
     var arr = [];
-    for(var i=0;i<this.length;i++){
-        if(callback(this[i],i,this)){
-            arr.push(this[i]);
+    for(var i=0; i < arr.length; i++){
+        if(callback(arr[i], i, arr)){
+            arr.push(arr[i]);
         }
     }
     return arr;
 }
 
-function flat(n){
+function flat(arr, n){
   var list = [];
   if(n==null) n = 1;
-  for(var i = 0; i < this.length; i++){
-    if(n&&toString.call(this[i]) === '[object Array]'){
-      list = list.concat(flat.call(this[i],n-1));
+  for(var i = 0; i < arr.length; i++){
+    if(n && Object.prototype.toString.call(arr[i]) === '[object Array]'){
+      list = list.concat(flat(arr[i], n - 1));
     }else{
-      list.push(this[i]);
+      list.push(arr[i]);
     }
   }
   return list;
 }
 
-function flatMap(callback){
-    return flat.call(map.call(this, function(v, i, arr){
+function flatMap(arr, callback){
+    return flat(arr, map(arr, function(v, i, arr){
         return callback(v, i, arr);
     }))
 }
 
-function each(list, callback, type) {
-    var start = 1;
-    var end = list.length - 1;
-    while (end >= start) {
-        var index = start;
-        if (type) {
-            index = end;
-            end -= 1;
+function each(list, callback, options) {
+    var ops = {
+        start: 0,
+        end: list.length - 1,
+        order: true
+    }
+    if (options) {
+        for(var key in ops) {
+            if(options[key] !== undefined) {
+                ops[key] = options[key];
+            }
+        }
+    }
+    while (ops.end >= ops.start) {
+        var index = ops.start;
+        if (ops.order) {
+            ops.start += 1;
         } else {
-            start += 1;
+            index = ops.end;
+            ops.end -= 1;
         }
         if (callback(list[index], index, list)) {
             return;
@@ -68,8 +78,31 @@ function each(list, callback, type) {
     }
 }
 
-function forEach(callback) {
-    each(this, function(item, index, list){
+function forEach(arr, callback) {
+    each(arr, function(item, index, list) {
         callback(item, index, list);
     })
+}
+
+function includes(arr, value, start) {
+    start = start === undefined ? 0 : start < 0 ? arr.length + start : start;
+    var result = false;
+    each(arr, function(item) {
+        if (item === value) {
+            result = true;
+            return true;
+        }
+    }, { start });
+    return result;
+}
+
+function find(arr, callback) {
+    var result;
+    each(arr, function(item, i, list) {
+        if (callback(item, i, list)) {
+            result = item;
+            return true;
+        }
+    })
+    return result;
 }
