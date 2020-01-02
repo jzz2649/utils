@@ -51,6 +51,7 @@ function flatMap(arr, callback){
     }))
 }
 
+<<<<<<< HEAD
 function each(list, callback, options) {
     var ops = {
         start: 0,
@@ -68,6 +69,16 @@ function each(list, callback, options) {
         var index = ops.start;
         if (ops.order) {
             ops.start += 1;
+=======
+function each(list, callback, type) {
+    var start = 0;
+    var end = list.length - 1;
+    while (end >= start) {
+        var index = start;
+        if (type) {
+            index = end;
+            end -= 1;
+>>>>>>> bd44f32dfb94af2bf17d9e9524deab9381e36ac8
         } else {
             index = ops.end;
             ops.end -= 1;
