@@ -15,21 +15,21 @@ function reduce(arr, callback, initValue){
 }
 
 function map(arr, callback){
-    var arr = [];
-    for(var i=0; i < arr.length; i++){
-        arr.push(callback(arr[i], i, arr));
+    var list = [];
+    for(var i = 0; i < arr.length; i++){
+        list.push(callback(arr[i], i, arr));
     }
-    return arr;
+    return list;
 }
 
 function filter(arr, callback){
-    var arr = [];
-    for(var i=0; i < arr.length; i++){
+    var list = [];
+    for(var i = 0; i < arr.length; i++){
         if(callback(arr[i], i, arr)){
-            arr.push(arr[i]);
+            list.push(arr[i]);
         }
     }
-    return arr;
+    return list;
 }
 
 function flat(arr, n){
@@ -46,7 +46,7 @@ function flat(arr, n){
 }
 
 function flatMap(arr, callback){
-    return flat(arr, map(arr, function(v, i, arr){
+    return flat(map(arr, function(v, i, arr){
         return callback(v, i, arr);
     }))
 }
@@ -105,4 +105,50 @@ function find(arr, callback) {
         }
     })
     return result;
+}
+
+function some(arr, callback) {
+    var result = false;
+    each(arr, function(item, i, list) {
+        if (callback(item, i, list)) {
+            result = true
+            return true;
+        }
+    })
+    return result;
+}
+
+function every(arr, callback) {
+    var result = true;
+    each(arr, function(item, i, list) {
+        if (!callback(item, i, list)) {
+            result = false
+            return true;
+        }
+    })
+    return result;
+}
+
+function lastIndexOf(arr, value, fromIndex) {
+    if (fromIndex == null) {
+        fromIndex = arr.length - 1;
+    }
+    fromIndex = Math.min(fromIndex, arr.length - 1);
+    if (fromIndex < 0) {
+        fromIndex = Math.min(arr.length + fromIndex, arr.length - 1)
+        if (fromIndex < 0) {
+            return -1
+        }
+    }
+    each(arr, function(item, i) {
+        fromIndex = -1
+        if (value === item) {
+            fromIndex = i;
+            return true;
+        }
+    }, {
+        end: fromIndex,
+        order: false
+    })
+    return fromIndex;
 }
